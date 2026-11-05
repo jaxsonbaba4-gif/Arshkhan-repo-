@@ -1,0 +1,124 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-display: "Space Grotesk", system-ui, -apple-system, sans-serif;
+    --font-handwriting: "Caveat", "Kalam", cursive;
+    --font-kalam: "Kalam", cursive;
+    --font-mono: "Space Mono", monospace;
+
+    --color-paper: #FAF9F5;
+    --color-ink: #171613;
+    --color-butter: #F5D15B;
+    --color-mint: #A9DEC9;
+    --color-lavender: #C8B8F2;
+    --color-blush: #F3A8B8;
+    --color-warm-grey: #D9D7D0;
+    --color-notebook-line: #ECEAE3;
+    --color-margin-line: #F4D3D7;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    overflow-x: hidden;
+  }
+}
+
+/* Typography Helpers */
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-handwriting {
+  font-family: var(--font-handwriting);
+}
+
+.font-kalam {
+  font-family: var(--font-kalam);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* Paper Stationery Textures & Effects */
+.paper-canvas-ruled {
+  background-color: var(--color-paper);
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 31px,
+    var(--color-notebook-line) 31px,
+    var(--color-notebook-line) 32px
+  );
+  background-size: 100% 32px;
+}
+
+.paper-margin-guide {
+  position: relative;
+}
+
+.paper-margin-guide::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: clamp(2rem, 8vw, 6rem);
+  width: 1px;
+  background-color: var(--color-margin-line);
+  opacity: 0.55;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Tactile Drop Shadows */
+.shadow-paper {
+  box-shadow: 0 2px 4px rgba(23, 22, 19, 0.04), 0 10px 24px -4px rgba(23, 22, 19, 0.08);
+}
+
+.shadow-paper-hover {
+  box-shadow: 0 4px 8px rgba(23, 22, 19, 0.06), 0 18px 36px -6px rgba(23, 22, 19, 0.14);
+}
+
+.shadow-sticky {
+  box-shadow: -1px 3px 8px rgba(23, 22, 19, 0.06), 0 12px 28px -6px rgba(23, 22, 19, 0.12);
+}
+
+/* Washi Tape Strip */
+.washi-tape {
+  background: rgba(245, 209, 91, 0.7);
+  backdrop-filter: blur(2px);
+  mask-image: radial-gradient(circle, #000 95%, transparent 100%);
+  border-left: 2px dashed rgba(255, 255, 255, 0.4);
+  border-right: 2px dashed rgba(255, 255, 255, 0.4);
+}
+
+/* Fluid clamped hero title */
+.fluid-hero-name {
+  font-size: clamp(2.85rem, 8.5vw, 6.75rem);
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+}
+
+/* Smooth selection */
+::selection {
+  background: #F5D15B;
+  color: #171613;
+}
+
+/* Tactile Paper Grain & Fiber Overlay */
+.paper-grain-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 35;
+  opacity: 0.042;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperGrain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.1 0 0 0 0 0.09 0 0 0 0 0.08 0 0 0 0.7 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paperGrain)'/%3E%3Cpath d='M30 45 Q 38 48, 42 55' stroke='%233E2723' stroke-width='0.6' fill='none' opacity='0.35'/%3E%3Cpath d='M160 110 Q 165 118, 172 115' stroke='%233E2723' stroke-width='0.5' fill='none' opacity='0.3'/%3E%3Cpath d='M90 190 Q 98 185, 102 192' stroke='%233E2723' stroke-width='0.55' fill='none' opacity='0.25'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 240px 240px;
+}
